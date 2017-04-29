@@ -33,10 +33,10 @@ for directory in drive_dirs:
                 # filename = line[0].split('\\')[-1]
                 # the following line uses separator for simulator data collected in OSX
                 filename = line[camera].split('/')[-1]
-                image = cv2.imread(os.path.join(root_data_dir, directory, 'IMG/', filename))
-                #image = cv2.imread(os.path.join(root_data_dir, directory, filename))
-                #print(os.path.join(root_data_dir, directory, filename))
-                images.append(image)
+                # image is in BGR color space (default of cv.imread)
+                image_bgr = cv2.imread(os.path.join(root_data_dir, directory, 'IMG/', filename))
+                image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                images.append(image_rgb)
                 measurements.append(float(line[3]))
 
 # augmentation
@@ -65,11 +65,11 @@ def nvidia_model():
     model.add(Cropping2D(cropping=((50, 20), (0, 0)), input_shape=(160, 320, 3)))
     model.add(BatchNormalization(epsilon=0.001, axis=3, input_shape=(90, 320, 3)))
 
-    model.add(Conv2D(24, 5, 5, border_mode='valid', activation='relu', subsample=(2, 2)))
-    model.add(Conv2D(36, 5, 5, border_mode='valid', activation='relu', subsample=(2, 2)))
-    model.add(Conv2D(48, 5, 5, border_mode='valid', activation='relu', subsample=(2, 2)))
-    model.add(Conv2D(64, 3, 3, border_mode='valid', activation='relu', subsample=(1, 1)))
-    model.add(Conv2D(64, 3, 3, border_mode='valid', activation='relu', subsample=(1, 1)))
+    model.add(Conv2D(24, (5, 5), padding='valid', activation='relu', strides=(2, 2)))
+    model.add(Conv2D(36, (5, 5), padding='valid', activation='relu', strides=(2, 2)))
+    model.add(Conv2D(48, (5, 5), padding='valid', activation='relu', strides=(2, 2)))
+    model.add(Conv2D(64, (3, 3), padding='valid', activation='relu', strides=(1, 1)))
+    model.add(Conv2D(64, (3, 3), padding='valid', activation='relu', strides=(1, 1)))
     model.add(Flatten())
     model.add(Dense(1164, activation='relu'))
     model.add(Dense(100, activation='relu'))
@@ -86,7 +86,7 @@ model.compile(loss='mse', optimizer='adam')
 # Training Pipeline
 beginTime = time.time()
 
-model.fit(X_train, Y_train, validation_split=0.2, shuffle=True, epochs=1)
+model.fit(X_train, Y_train, validation_split=0.2, shuffle=True, epochs=5)
 model.save('model.h5')
 
 endTime = time.time()
