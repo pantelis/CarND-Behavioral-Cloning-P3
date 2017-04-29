@@ -86,8 +86,10 @@ model.compile(loss='mse', optimizer='adam')
 # Training Pipeline
 beginTime = time.time()
 
-model.fit(X_train, Y_train, validation_split=0.2, shuffle=True, nb_epoch=1)
+model.fit(X_train, Y_train, validation_split=0.2, shuffle=True, epochs=1)
 model.save('model.h5')
 
 endTime = time.time()
 print('Training time: {:5.2f}s'.format(endTime - beginTime))
+
+import gc; gc.collect()
