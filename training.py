@@ -35,7 +35,7 @@ for directory in drive_dirs:
                 filename = line[camera].split('/')[-1]
                 # image is in BGR color space (default of cv.imread)
                 image_bgr = cv2.imread(os.path.join(root_data_dir, directory, 'IMG/', filename))
-                image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
                 images.append(image_rgb)
                 measurements.append(float(line[3]))
 
