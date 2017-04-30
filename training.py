@@ -12,7 +12,7 @@ from keras.layers.normalization import BatchNormalization
 
 # driving the car forward in track 1
 root_data_dir = '../datasets/udacity-car-sim-data/'
-drive_dirs = ['final-forward-track1/', 'recovery-track1/', 'recovery-track1-additional', 'reverse-track1', 'udacity-data-track1']
+drive_dirs = ['final-forward-track1/', 'recovery-track1/']
 
 # number of cameras to use (max 3)
 # camera indeces (0,1,2) = (center, left, right)
