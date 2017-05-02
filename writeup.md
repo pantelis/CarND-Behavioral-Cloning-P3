@@ -114,6 +114,7 @@ for image, measurement in zip(images, measurements):
 
 ```
 The original (top) and flipped (bottom) images are shown below. 
+
 ![original-image]
 
 ![augmented-image]
