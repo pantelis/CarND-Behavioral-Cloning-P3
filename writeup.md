@@ -113,8 +113,9 @@ for image, measurement in zip(images, measurements):
     augmented_measurements.append(measurement*(-1.0))
 
 ```
-The original (left) and flipped (right) images are shown below. 
+The original (top) and flipped (bottom) images are shown below. 
 ![original-image]
+
 ![augmented-image]
 Cropping was applied to both images as described above. 
 In total 5882 original images resulted in 11764 images after augmentation. With 20% validation set size, this meant 9411 images that were 
