@@ -50,10 +50,12 @@ print('Number of original images:', len(images))
 print('Number of augmented images:', len(augmented_images))
 
 
-# for img in images:
-#     cv2.imshow('image', img)
-#     cv2.waitKey(0)
-#     cv2.destroyAllWindows()
+# save an original and flipped image
+cv2.imshow('image', augmented_images[10])
+cv2.imwrite('original-image.png', augmented_images[10])
+cv2.imshow('augmented', augmented_images[10])
+cv2.imwrite('augmented-image.png', augmented_images[11])
+cv2.destroyAllWindows()
 
 X_train = np.array(augmented_images)
 Y_train = np.array(augmented_measurements)
@@ -87,6 +89,7 @@ model.compile(loss='mse', optimizer='adam')
 beginTime = time.time()
 
 model.fit(X_train, Y_train, validation_split=0.2, shuffle=True, epochs=5)
+
 model.save('model.h5')
 
 endTime = time.time()
