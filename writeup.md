@@ -118,6 +118,7 @@ The original (top) and flipped (bottom) images are shown below.
 ![original-image]
 
 ![augmented-image]
+
 Cropping was applied to both images as described above. 
 In total 5882 original images resulted in 11764 images after augmentation. With 20% validation set size, this meant 9411 images that were 
 used for training and 2353 images used for validation. The model used an adam optimizer, so the learning rate was not tuned manually. 
