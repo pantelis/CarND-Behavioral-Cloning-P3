@@ -15,6 +15,9 @@ around track one without leaving the road as shown in the video.
 
 [nvidia-model]: ./examples/nvidia-model.png "NVIDIA CNN Model"
 [aws-training]: ./examples/aws-training.png "AWS Screenshot"
+[udacity-simulator]: ./examples/udacity-simulator.png "Udacity simulator screenshot"
+[original-image]: ./examples/original-image.png "Udacity simulator original image"
+[augmented-image]: ./examples/augmented-image.png "Udacity simulator augmented image"
 
 ## How to execute the model
 This repo includes the following files:
@@ -29,6 +32,9 @@ Using the Udacity provided simulator, the car can be driven autonomously around 
 ```sh
 python drive.py model.h5
 ```
+A screenshot of the simulator for the first track is shown below:
+
+![udacity-simulator]
 
 ###Model Architecture and Training Strategy
 The model was based on [NVIDIA's work](http://arxiv.org/abs/1604.07316) with two preprocessing stages.  The original NVIDIA model 
@@ -107,6 +113,10 @@ for image, measurement in zip(images, measurements):
     augmented_measurements.append(measurement*(-1.0))
 
 ```
+The original (left) and flipped (right) images are shown below. 
+![original-image]
+![augmented-image]
+Cropping was applied to both images as described above. 
 In total 5882 original images resulted in 11764 images after augmentation. With 20% validation set size, this meant 9411 images that were 
 used for training and 2353 images used for validation. The model used an adam optimizer, so the learning rate was not tuned manually. 
 

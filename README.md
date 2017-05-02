@@ -3,6 +3,9 @@
 Overview
 ---
 The main files of this repo are the training.py and the writeup.md. The result of driving the vehicle autonomously is captured in run.mp4. 
+The writeup.md contains screenshots of the images captured during training, preprocessing and during the actual autonomous ride. 
+
+[udacity-simulator]: ./examples/udacity-simulator.png "Udacity simulator screenshot"
 
 ### Dependencies
 This lab requires:
@@ -18,11 +21,14 @@ The following resources can be found in this github repository:
 * training.py
 * writeup.md
 
-The simulator can be downloaded from the download-data.sh file.  
+The simulator can be downloaded from the download-data.sh file.  A screenshot of the simulator for the first track is shown below:
 
-## Details About Files In This Directory
+![udacity-simulator]
 
-### `drive.py`
+
+#### Details About Files In This Directory
+
+#### `drive.py`
 
 Usage of `drive.py` requires you have saved the trained model as an h5 file, i.e. `model.h5`. Note that the model.h5 used in this repo 
 is available in the S3 bucket but for AWS cost reasons the file is not available for download. 
